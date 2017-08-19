@@ -1,13 +1,14 @@
 package com.redbee.challenge.socialnetworks.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.redbee.challenge.socialnetworks.SocialNetworkListener;
 
-import twitter4j.StatusListener;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
+import twitter4j.UserStreamListener;
 import twitter4j.conf.ConfigurationBuilder;
 
 @Service("socialNetworkListener")
@@ -25,6 +26,9 @@ public class TwitterListenerImpl implements SocialNetworkListener {
 	@Value( "${socialnetwork.twitter.access.token.secret}" )
 	private String accessTokenSecret;
 	
+	@Autowired
+	private UserStreamListener listener;
+	
 	private TwitterStream twitterStream = null;
 	
 	private void init() {
@@ -36,8 +40,6 @@ public class TwitterListenerImpl implements SocialNetworkListener {
 		.setOAuthAccessTokenSecret(accessTokenSecret);
 
 		twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
-		StatusListener listener = new UserStreamListenerImpl();
-
 		twitterStream.addListener(listener);
 	}
 	

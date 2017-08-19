@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.redbee.challenge.exceptions.BoardDAOException;
@@ -24,20 +21,13 @@ public class MessageController {
 	private BoardService boardService;
 
 	@MessageMapping("/message")
-	@SendTo("/topic/interests")
-	public InterestMessage getInterest(InterestMessage message) throws InterruptedException {
-		//        message = new InterestMessage();
-		//        message.setMessage("Hello");
-
-
+	public void getInterest(InterestMessage message) throws InterruptedException {
 		logger.debug("Obteniendo los intereses de " + message.getMessage());
 
 		try {
 			boardService.getInterestByBoardName(message.getMessage());
 		} catch (BoardDAOException e) {
 			logger.debug(e.getMessage());
-			return null;
 		}
-		return message;
 	}
 }

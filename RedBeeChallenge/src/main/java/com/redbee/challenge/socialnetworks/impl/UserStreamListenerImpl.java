@@ -1,5 +1,11 @@
 package com.redbee.challenge.socialnetworks.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Component;
+
+import com.redbee.challenge.messages.InterestMessage;
+
 import twitter4j.DirectMessage;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -8,12 +14,19 @@ import twitter4j.User;
 import twitter4j.UserList;
 import twitter4j.UserStreamListener;
 
-
+@Component
 public class UserStreamListenerImpl implements UserStreamListener {
+
+	@Autowired
+	private SimpMessagingTemplate template;
 
 	@Override
 	public void onStatus(Status status) {
 		System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+		InterestMessage message = new InterestMessage(status.getText());
+		template.convertAndSend("/queue/interests", message);
+//		String destination = "leancohn";
+//		template.convertAndSendToUser(destination, "/queue/interests", message);
 	}
 
 	@Override
