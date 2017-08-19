@@ -33,18 +33,6 @@ public class BoardController {
 	public ResponseEntity<?> getBoards() {
 		return new ResponseEntity<List<Board>>(boardService.getAllBoards(), HttpStatus.OK);
 	}
-
-//	@RequestMapping(value = "/{name}/interests/", method = RequestMethod.GET, headers = "Accept=application/json")
-//	public ResponseEntity<?> getBoardByName(@PathVariable String name) {
-//		logger.debug("Obteniendo los intereses de " + name);
-//		
-//		try {
-//			return new ResponseEntity<List<Interest>>(boardService.getBoardByName(name).getInterests(), HttpStatus.OK);	
-//		} catch (BoardDAOException e) {
-//			logger.debug(e.getMessage());
-//			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//		}
-//	}
 	
 	@RequestMapping(value = "/{name}/interests/", method = RequestMethod.GET, headers = "Accept=application/json")
 	public ResponseEntity<?> getBoardByName(@PathVariable String name) {

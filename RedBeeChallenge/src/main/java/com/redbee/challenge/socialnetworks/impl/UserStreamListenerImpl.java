@@ -23,7 +23,7 @@ public class UserStreamListenerImpl implements UserStreamListener {
 	@Override
 	public void onStatus(Status status) {
 		System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-		InterestMessage message = new InterestMessage(status.getText());
+		InterestMessage message = new InterestMessage("@" + status.getUser().getScreenName() + " - " + status.getText());
 		template.convertAndSend("/queue/interests", message);
 //		String destination = "leancohn";
 //		template.convertAndSendToUser(destination, "/queue/interests", message);

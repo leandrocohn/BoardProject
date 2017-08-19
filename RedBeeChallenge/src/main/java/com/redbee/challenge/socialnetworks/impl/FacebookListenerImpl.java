@@ -1,7 +1,9 @@
 package com.redbee.challenge.socialnetworks.impl;
 
-import com.redbee.challenge.socialnetworks.SocialNetworkListener;
+import org.springframework.stereotype.Component;
 
+import com.redbee.challenge.socialnetworks.SocialNetworkListener;
+@Component("facebookListener")
 public class FacebookListenerImpl implements SocialNetworkListener {
 	
 	/**
@@ -10,7 +12,7 @@ public class FacebookListenerImpl implements SocialNetworkListener {
 	 * @param user
 	 */
 	public void listeningUser (String user) {
-		// TODO Empty class of Facebook
+		// TODO Empty class of Facebook impl
 	}
 
 }

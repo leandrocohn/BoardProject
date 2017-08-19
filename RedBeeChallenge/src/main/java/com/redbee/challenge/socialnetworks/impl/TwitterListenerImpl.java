@@ -2,7 +2,7 @@ package com.redbee.challenge.socialnetworks.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.redbee.challenge.socialnetworks.SocialNetworkListener;
 
@@ -11,7 +11,7 @@ import twitter4j.TwitterStreamFactory;
 import twitter4j.UserStreamListener;
 import twitter4j.conf.ConfigurationBuilder;
 
-@Service("socialNetworkListener")
+@Component("twitterListener")
 public class TwitterListenerImpl implements SocialNetworkListener {
 	
 	@Value( "${socialnetwork.twitter.consumer.key}" )
