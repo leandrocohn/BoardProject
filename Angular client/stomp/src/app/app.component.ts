@@ -10,15 +10,15 @@ import { StompService } from './stomp.service';
 })
 export class AppComponent implements OnInit {
   public inputField = '';
-  public serverResponse: string;
-
+  public messages: string[] = [];
+  
   constructor(private _stompService: StompService) {
   }
 
   public ngOnInit(): void {
     this._stompService.connect('ws://localhost:8080/interest-websocket/websocket');
     this._stompService.getObservable().subscribe(payload => {
-      this.serverResponse = payload.outputField;
+      this.messages.push(payload.message)
     });
   }
 
