@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._stompService.connect('ws://localhost:8080/interest-websocket');
+    this._stompService.connect('ws://localhost:8080/interest-websocket/websocket');
     this._stompService.getObservable().subscribe(payload => {
       this.serverResponse = payload.outputField;
     });
