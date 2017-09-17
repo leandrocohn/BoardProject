@@ -3,4 +3,10 @@
   <span>Enter the board name:</span> <input type="text" name="inputField" [(ngModel)]="inputField" />
   <button (click)="send()">SEND</button>
 </div>
-<span>Server replied with: {{serverResponse}} </span>
+
+<span>Posts: </span>
+<div>
+  <li *ngFor="let message of messages"> 
+    {{ message }} 
+  </li>
+</div>
