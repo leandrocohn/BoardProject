@@ -1,12 +1,15 @@
-<h1>AngularJS Board Challenge</h1>
-<div>
-  <span>Enter the board name:</span> <input type="text" name="inputField" [(ngModel)]="inputField" />
-  <button (click)="send()">SEND</button>
-</div>
+<body>
+  <h1>AngularJS Board Challenge</h1>
+  <div>
+    <span class="input-field">Enter the board name:</span> <input type="text" name="inputField" [(ngModel)]="inputField" />
+    <button (click)="send()" class="button" style="vertical-align:middle"><span>SEND</span></button>
+  </div>
 
-<span>Posts: </span>
-<div>
-  <li *ngFor="let message of messages"> 
-    {{ message }} 
-  </li>
-</div>
+  <span class="input-field">Posts: </span>
+  <div>
+    <li class="output-field" *ngFor="let message of messages" > 
+      {{ message }} 
+    </li>
+  </div>
+
+</body>
