@@ -18,9 +18,7 @@ export class StompService {
         this._stompClient = Stomp.over(webSocket);
         this._stompClient.connect({}, function (frame) {
             self._stompClient.subscribe('/queue/interests', function (stompResponse) {
-                // stompResponse = {command, headers, body with JSON 
-                // reflecting the object returned by Spring framework}
-                self._stompSubject.next(JSON.parse(stompResponse.body));
+                 self._stompSubject.next(JSON.parse(stompResponse.body));
             });
         });
     }
